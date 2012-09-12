@@ -65,18 +65,65 @@ public class Image1 {
 	
 	public int[][] getOutline(){
 		
-		//this doesnt work at all XD
 		int[][] output = new int[this.pixels.length][this.pixels[0].length];
 		
+		int start_x = -1;
+		int start_y = -1;
 		for(int i=0; i<this.pixels.length; i++){
 			for(int j=0; j<this.pixels[i].length; j++){
-				if (this.pixels[i][j] == 1 && this.count8neighbor(i, j) != 8){
-					output[i][j] = 1;
-				}else{
-					output[i][j] = 0;
+				
+				//find starting pixel
+				if (this.pixels[i][j] == 1){
+					start_x = j;
+					start_y = i;
+					output[i][j]=1;
+					break;
 				}
+				
+			}
+			if(start_x != -1){
+				break;
 			}
 		}
+		int cur_x = start_x;
+		int cur_y = start_y;
+		
+		//clockwise
+		//8-connected
+		int[] dx = {-1, -1, 0, 1, 1, 1, 0, -1};
+		int[] dy = {0, -1, -1, -1, 0, 1, 1, 1};
+		
+		//4-connected
+		//int[] dx = {-1, 0, 1, 0};
+		//int[] dy = {0, -1, 0, 1};
+		
+		do{
+			
+			//8 neighbor with 1
+			for(int i=0;i<dx.length;i++){
+				if(this.pixels[cur_y+dy[i]][cur_x+dx[i]] == 1){
+					int offset = i-1;
+					
+					if (offset == -1){
+						offset = dx.length-1;
+					}
+					
+					try{
+						
+						if(this.pixels[cur_y+dy[offset]][cur_x+dx[offset]] == 0){
+							cur_y += dy[i];
+							cur_x += dx[i];
+							output[cur_y][cur_x] = 1;
+							System.out.printf("(%d,%d)\n", cur_y, cur_x);
+							break;
+						}
+					}catch(ArrayIndexOutOfBoundsException e){}
+				}
+			}
+			
+			
+		} while (cur_x != start_x || cur_y != start_y);
+		
 		return output;
 	}
 	
