@@ -7,21 +7,21 @@ public class Image1 {
 	public Image1(){
 		
 		//Ejercicio
-		/*this.pixels  = new int[][]{
+		this.pixels  = new int[][]{
 					   {0,0,0,0,0,0,0,0,0,0},
 					   {0,1,1,1,0,0,0,0,0,0},
+					   {0,1,1,1,1,1,0,0,0,0},
 					   {0,1,1,1,1,1,1,1,0,0},
-					   {0,1,1,1,1,1,1,1,0,0},
-					   {0,0,1,1,1,0,0,1,1,0},
-					   {0,0,1,1,1,0,0,1,1,0},
-					   {0,0,0,1,1,1,1,1,1,0},
-					   {0,0,0,1,1,1,1,1,1,0},
-					   {0,0,0,0,0,0,0,0,0,0},
+					   {0,0,1,1,1,1,1,1,0,0},
+					   {0,0,1,1,0,0,1,1,0,0},
+					   {0,0,1,1,0,0,1,1,0,0},
+					   {0,0,1,1,1,1,1,1,0,0},
+					   {0,0,0,0,1,1,1,1,0,0},
 					   {0,0,0,0,0,0,0,0,0,0}};
-		*/
+		
 		
 		//Presentacion
-		this.pixels = new int[][]{
+		/*this.pixels = new int[][]{
 								  {0,0,0,0,0,0,0,0,0,0,0},
 								  {0,0,1,1,1,1,1,1,1,0,0},
 								  {0,0,1,1,1,1,1,1,1,0,0},
@@ -31,7 +31,7 @@ public class Image1 {
 								  {0,1,1,1,1,1,1,1,1,1,0},
 								  {0,0,0,1,1,1,1,1,0,0,0},
 								  {0,0,0,1,1,1,1,1,0,0,0},
-								  {0,0,0,0,0,0,0,0,0,0,0}};
+								  {0,0,0,0,0,0,0,0,0,0,0}};*/
 								  
 		
 		
@@ -93,9 +93,7 @@ public class Image1 {
 		int[] dx = {-1, -1, 0, 1, 1, 1, 0, -1};
 		int[] dy = {0, -1, -1, -1, 0, 1, 1, 1};
 		
-		//4-connected
-		//int[] dx = {-1, 0, 1, 0};
-		//int[] dy = {0, -1, 0, 1};
+	
 		
 		do{
 			
@@ -111,10 +109,22 @@ public class Image1 {
 					try{
 						
 						if(this.pixels[cur_y+dy[offset]][cur_x+dx[offset]] == 0){
+							
+							//corners - para 4-connected
+							if(i % 2 == 1){
+								offset = (i+1) % dx.length;
+								if(this.pixels[cur_y+dy[offset]][cur_x+dx[offset]] == 1){
+									output[cur_y+dy[offset]][cur_x+dx[offset]] =1;
+								}
+							}
+							
+							
 							cur_y += dy[i];
 							cur_x += dx[i];
 							output[cur_y][cur_x] = 1;
-							System.out.printf("(%d,%d)\n", cur_y, cur_x);
+							//System.out.printf("(%d,%d)\n", cur_y, cur_x);
+							
+						
 							break;
 						}
 					}catch(ArrayIndexOutOfBoundsException e){}
