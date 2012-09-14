@@ -7,9 +7,6 @@ public class Regions {
 		
 		Stack<Node> s = new Stack<Node>();
 		
-		/*if(image[y][x] != target){
-			return;
-		}*/
 		s.push(new Node(x,y));
 		
 		while(!s.empty()){
@@ -56,7 +53,56 @@ public class Regions {
 		
 		
 	}
-	
+	public Node getNeighbor(int[][] img, int x, int y){
+		
+		for(int dy=-1; dy<2; dy++){
+			for(int dx=-1; dx<2; dx++){
+				try{
+					if(img[y+dy][x+dx] == 1){
+						return new Node(x+dx,y+dy);
+					}
+				}catch(ArrayIndexOutOfBoundsException e){}
+			}
+		}
+		return null;
+		
+	}
+	public void mark_regions(int[][] img){
+		
+		//flood-fill outter 0s with -1s
+		this.flood_fill(img, 0, 0, 0,-1);
+		
+		for(int i=0;i<img.length;i++){
+			for(int j=0;j<img[i].length; j++){
+				
+				if(img[i][j]==0){
+					
+					//look for a 1 
+					
+					Node pos = this.getNeighbor(img, j, i);
+					if(pos != null){
+						flood_fill(img,pos.x, pos.y, 1,3);
+					}
+					
+				}
+			}
+		}
+		
+		//replace 1-s for 2-s
+
+		for(int i=0;i<img.length;i++){
+			for(int j=0;j<img[i].length; j++){
+				if(img[i][j]==1){
+					
+					img[i][j]=2;
+				}
+			}
+		}		
+		
+		//reverse flood-fill -1s to 0s
+		this.flood_fill(img, 0, 0, -1,0);
+		
+	}
 	
 	
 	public static void main(String[] args) {
@@ -69,13 +115,13 @@ public class Regions {
 								  {0,0,0,0,1,1,1,1,1,0},
 								  {0,0,0,0,1,1,1,1,1,0},
 								  {0,0,1,0,1,1,1,1,1,0},
-								  {0,1,1,0,1,1,1,1,1,0},
+								  {0,1,1,0,1,1,0,0,1,0},
 								  {0,1,1,0,0,1,1,1,1,0},
 								  {0,1,1,0,0,0,0,0,0,0},
 								  {0,0,0,0,0,0,0,0,0,0}};
 		
 		Regions r = new Regions();
-		r.flood_fill(imgA, 0, 0, 0, -1);
+		r.mark_regions(imgA);
 		
 		for(int[] tmp: imgA){
 			System.out.println(Arrays.toString(tmp));
@@ -84,6 +130,8 @@ public class Regions {
 	}
 
 }
+
+
 
 class Node{
 
