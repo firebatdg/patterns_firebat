@@ -7,73 +7,50 @@ public class Regions {
 		
 		Stack<Node> s = new Stack<Node>();
 		
-		if(image[y][x] != target){
+		/*if(image[y][x] != target){
 			return;
-		}
+		}*/
 		s.push(new Node(x,y));
 		
 		while(!s.empty()){
+			
+			Node tmp;
 			try{
-				Node tmp = s.pop();
-				System.out.println(tmp);
+				tmp = s.pop();
+		
 				if(image[tmp.y][tmp.x] == target){
 					image[tmp.y][tmp.x] = replace;
-					System.out.printf("(%d,%d)\n", tmp.y, tmp.x);
+			
 				}else{
 					continue;
 				}
 			}catch(ArrayIndexOutOfBoundsException e){
 				continue;
 			}
+
 			
-			
-			//left
-			int i=0;
-			while(true){
-				
-				try{
-					i--;
-					if(image[y][x+i] == target){
-						image[y][x+i] = replace;
-						System.out.printf("[%d,%d]\n", y, x+i);
-					}else{
-						break;
-					}
-				}catch(ArrayIndexOutOfBoundsException e){
-					break;
-				}
-				
+			Node left = new Node(tmp.x-1,tmp.y);
+			if(!s.contains(left)){
+				s.push(left);
 			}
-			//right
-			i=0;
-			while(true){
-				
-				try{
-					i++;
-					if(image[y][x+i] == target){
-						image[y][x+i] = replace;
-						System.out.printf("[%d,%d]\n", y, x+i);
-					}else{
-						break;
-					}
-				}catch(ArrayIndexOutOfBoundsException e){
-					break;
-				}
-				
-			}
-			//System.out.println(s);
 			
-			Node up = new Node(x,y-1);
+			Node right = new Node(tmp.x+1,tmp.y);
+			if(!s.contains(right)){
+				s.push(right);
+			}
+			
+			
+			Node up = new Node(tmp.x,tmp.y-1);
 			if(!s.contains(up)){
 				s.push(up);
 			}
 			
-			Node down = new Node(x,y+1);
+			Node down = new Node(tmp.x,tmp.y+1);
 			if(!s.contains(down)){
 				s.push(down);
 			}
 			
-			
+		
 			
 		}
 		
