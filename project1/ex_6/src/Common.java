@@ -25,5 +25,17 @@ public class Common {
 		
 	}
 
+	public int[] get_histogram(BufferedImage img){
+		
+		int[] out = new int[256];
+		for(int y=0; y<img.getHeight();y++){
+			for(int x=0; x<img.getWidth();x++){
+				int rgb = img.getRGB(x, y);
+				out[this.greyLevel(rgb)]++;
+			}
+		}
+		
+		return out;
+	}
 
 }
