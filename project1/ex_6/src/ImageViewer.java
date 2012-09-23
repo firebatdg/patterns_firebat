@@ -13,11 +13,11 @@ public class ImageViewer {
 	private BufferedImage img;
 	public ImageRender render;
 	
-	public ImageViewer(BufferedImage img){
+	public ImageViewer(BufferedImage img, String title){
 		
 		
 		
-		this.frame = new JFrame("Ejercicio 1");
+		this.frame = new JFrame(title);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		

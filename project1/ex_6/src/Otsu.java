@@ -18,7 +18,7 @@ public class Otsu {
 			this.img = BMPDecoder.read(new File("imag001.bmp"));
 		} catch (IOException e) {}
 		
-		viewer = new ImageViewer(this.img);
+		viewer = new ImageViewer(this.img, "Metodo de Otsu");
 		
 	}
 	
