@@ -48,7 +48,7 @@ public int[][] dilate(int[][] original, int[][] pattern){
 					out[i][j] = 1;
 					for(int k=0;k<8;k++){
 						try{
-							System.out.printf("%d & %d\n", pattern[1+dy[k]][1+dx[k]], original[i+dy[k]][j+dx[k]]);
+							
 							if(pattern[1+dy[k]][1+dx[k]] == 1  ){
 								out[i+dy[k]][j+dx[k]] = 1;
 								
@@ -66,7 +66,64 @@ public int[][] dilate(int[][] original, int[][] pattern){
 		
 	}
 	
+	public int contact_pixels(int[][] img){
+		int out=0;
+		
+		for(int i=0;i<img.length;i++){
+			for(int j=0;j<img[i].length;j++){
+				try{
+					if(img[i][j] == 1 && img[i][j+1]==1){
+						out++;
+					}
+				}catch(ArrayIndexOutOfBoundsException e){}
+				try{
+					if(img[i][j] == 1 && img[i+1][j]==1){
+						out++;
+					}
+				}catch(ArrayIndexOutOfBoundsException e){}
+			}
+		}
+		return out;
+	}
 	
+	
+	public int count1s(int[][] img){
+		int count = 0;
+		for (int i=0; i < img.length; i++){
+			for (int j=0; j < img.length; j++){
+				
+				count += img[i][j];
+			}
+		}
+	
+		return count;
+	}
+	
+	public int tetraPixels(int img[][]){
+		int out=0;
+		
+		for(int i=0;i<img.length;i++){
+			for(int j=0;j<img[i].length;j++){
+				try{
+					
+					if(img[i][j]!= 1){
+						continue;
+					}
+					if(img[i][j+1] !=1){
+						continue;
+					}
+					if(img[i+1][j] !=1){
+						continue;
+					}
+					if(img[i+1][j+1] !=1){
+						continue;
+					}
+					out++;
+				}catch(ArrayIndexOutOfBoundsException e){continue;}
+			}
+		}
+		return out;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -90,6 +147,9 @@ public int[][] dilate(int[][] original, int[][] pattern){
 		for(int[] a:out2){
 			System.out.println(Arrays.toString(a));
 		}
+		
+		int objects = m.count1s(out2) + m.tetraPixels(out2) - m.contact_pixels(out2);
+		System.out.println(objects);
 	}
 
 }
