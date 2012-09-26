@@ -9,9 +9,9 @@ public class Histogram {
 		
 	}
 	
-	private float[] getData(int[][] img, int n){
+	private double[] getData(int[][] img, int n){
 		
-		float[] values = new float[n];
+		double[] values = new double[n];
 		int[] count = new int[n];
 		
 		for(int i=0; i < img.length; i++){
@@ -22,16 +22,30 @@ public class Histogram {
 		
 		
 		for(int i=0;i<values.length;i++){
-			values[i] = (float)count[i]/ (float)(img.length * img.length) * 100.0f;
+			values[i] = (double)count[i]/ (double)(img.length * img.length) * 100.0f;
 		}
 		
 		return values;
+	}
+	public double[][] getHistData(int[][] img, int n){
+		
+		double [][] out = new double[2][n];
+		
+		for(int i=0;i<n;i++){
+			out[0][i] = i;
+		}
+		
+		out[1] = this.getData(img, n);
+		
+		return out;
+		
+		
 	}
 	
 	
 	public void printHistogram(int[][] img, int n){
 		
-		float[] data = this.getData(img, n);
+		double[] data = this.getData(img, n);
 		System.out.println(Arrays.toString(data));
 		
 		for(int i=10; i>= 0; i--){
@@ -58,7 +72,18 @@ public class Histogram {
 		System.out.println();
 	}
 	
-	
+	public double[] plain_list(int[][] img ){
+		double[] out = new double[img.length * img[0].length];
+		
+		int k=0;
+		for(int i=0;i<img.length;i++){
+			for(int j=0;j<img[i].length;j++){
+				out[k++] = img[i][j];
+			}
+		}
+		
+		return out;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
