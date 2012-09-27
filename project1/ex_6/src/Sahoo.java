@@ -7,10 +7,10 @@ import java.awt.image.*;
 public class Sahoo {
 
 	
-	private BufferedImage img;
+	public BufferedImage img;
 	private int threshold = 0;
 	private Common c = new Common();
-	private ImageViewer viewer;
+	//private ImageViewer viewer;
 	
 	public Sahoo(String image){
 		
@@ -19,7 +19,7 @@ public class Sahoo {
 			this.img = BMPDecoder.read(new File("imag001.bmp"));
 		} catch (IOException e) {}
 		
-		viewer = new ImageViewer(this.img, "Metodo de Kittler");
+	//	viewer = new ImageViewer(this.img, "Metodo de Kittler");
 		
 	}
 	
@@ -86,7 +86,7 @@ public class Sahoo {
 		
 			
 			double j = this.J(i, 0.1, hist);
-			System.out.println(j);
+			//System.out.println(j);
 			
 			if( j > max){
 				this.threshold = i;
@@ -102,7 +102,7 @@ public class Sahoo {
 		this.calculate_threshold();
 		System.out.println(this.threshold);
 		this.c.apply_threshold(this.img, this.threshold);
-		this.viewer.render.repaint();
+		//this.viewer.render.repaint();
 		
 	}
 	
@@ -112,6 +112,7 @@ public class Sahoo {
 		
 		Sahoo k = new Sahoo("imag001.bmp");
 		k.threshold();
+		ImageViewer viewer = new ImageViewer(k.img, "Metodo de Sahoo");
 
 	}
 

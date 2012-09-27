@@ -29,13 +29,17 @@ public class Histogram {
 	}
 	public double[][] getHistData(int[][] img, int n){
 		
-		double [][] out = new double[2][n];
+		double [][] out = new double[6][n];
 		
 		for(int i=0;i<n;i++){
 			out[0][i] = i;
 		}
 		
 		out[1] = this.getData(img, n);
+		out[2] = this.getData(img, n);
+		out[3] = this.getData(img, n);
+		out[4] = this.getData(img, n);
+		out[5] = this.getData(img, n);
 		
 		return out;
 		

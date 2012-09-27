@@ -6,10 +6,10 @@ import java.awt.image.*;
 public class Otsu {
 
 	
-	private BufferedImage img;
+	public BufferedImage img;
 	private int threshold = 0;
 	private Common c = new Common();
-	private ImageViewer viewer;
+//	private ImageViewer viewer;
 	
 	public Otsu(String image){
 		
@@ -18,7 +18,7 @@ public class Otsu {
 			this.img = BMPDecoder.read(new File("imag001.bmp"));
 		} catch (IOException e) {}
 		
-		viewer = new ImageViewer(this.img, "Metodo de Otsu");
+		//viewer = new ImageViewer(this.img, "Metodo de Otsu");
 		
 	}
 	
@@ -64,7 +64,7 @@ public class Otsu {
 		this.calculate_threshold();
 		System.out.println(this.threshold);
 		this.c.apply_threshold(this.img, this.threshold);
-		this.viewer.render.repaint();
+		//this.viewer.render.repaint();
 		
 	}
 	
@@ -74,7 +74,8 @@ public class Otsu {
 		
 		Otsu o = new Otsu("imag001.bmp");
 		o.threshold();
-
+		ImageViewer viewer = new ImageViewer(o.img, "Metodo de Otsu");
+		
 	}
 
 }

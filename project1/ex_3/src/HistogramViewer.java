@@ -79,6 +79,7 @@ public class HistogramViewer extends ApplicationFrame {
         this.data = data;
         IntervalXYDataset dataset = createDataset();
         JFreeChart chart = createChart(dataset);
+        
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
         chartPanel.setMouseZoomable(true, false);

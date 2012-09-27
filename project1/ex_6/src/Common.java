@@ -14,7 +14,7 @@ public class Common {
 		for(int y=0; y<img.getHeight();y++){
 			for(int x=0; x<img.getWidth();x++){
 				
-				if (this.greyLevel(img.getRGB(x, y)) > threshold){
+				if (this.greyLevel(img.getRGB(x, y)) >= threshold){
 					img.setRGB(x, y, 0xFFFFFF);
 				}else{
 					img.setRGB(x,y, 0x0);
@@ -36,6 +36,22 @@ public class Common {
 		}
 		
 		return out;
+	}
+	
+	public int[][] get_matrix_from_image(BufferedImage img){
+		int[][] out = new int[img.getHeight()][img.getWidth()];
+		
+		for(int y=0; y<img.getHeight();y++){
+			for(int x=0; x<img.getWidth();x++){
+				
+				
+				out[y][x] = (img.getRGB(x, y) & 0xFF )== 0 ? 0 : 1;
+			}
+			
+		}
+		
+		return out;
+		
 	}
 
 }

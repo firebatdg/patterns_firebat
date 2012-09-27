@@ -7,10 +7,10 @@ import java.awt.image.*;
 public class Kittler {
 
 	
-	private BufferedImage img;
+	public BufferedImage img;
 	private int threshold = 0;
 	private Common c = new Common();
-	private ImageViewer viewer;
+	//private ImageViewer viewer;
 	
 	public Kittler(String image){
 		
@@ -19,7 +19,7 @@ public class Kittler {
 			this.img = BMPDecoder.read(new File("imag001.bmp"));
 		} catch (IOException e) {}
 		
-		viewer = new ImageViewer(this.img, "Metodo de Kittler");
+		//viewer = new ImageViewer(this.img, "Metodo de Kittler");
 		
 	}
 	
@@ -99,7 +99,7 @@ public class Kittler {
 			float var1 = this.var_1(i, p_1, mu1, hist);
 			
 			double j = this.J(i, p_0, p_1, var0, var1);
-			System.out.println(j);
+			//System.out.println(j);
 			
 			if( j < min && j!=Double.NEGATIVE_INFINITY){
 				this.threshold = i;
@@ -115,7 +115,7 @@ public class Kittler {
 		this.calculate_threshold();
 		System.out.println(this.threshold);
 		this.c.apply_threshold(this.img, this.threshold);
-		this.viewer.render.repaint();
+		//this.viewer.render.repaint();
 		
 	}
 	
@@ -125,6 +125,7 @@ public class Kittler {
 		
 		Kittler k = new Kittler("imag001.bmp");
 		k.threshold();
+		ImageViewer viewer = new ImageViewer(k.img, "Metodo de Kittler");
 
 	}
 
