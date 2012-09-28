@@ -16,7 +16,7 @@ public class Sahoo {
 		
 		
 		try {
-			this.img = BMPDecoder.read(new File("imag001.bmp"));
+			this.img = BMPDecoder.read(new File(image));
 		} catch (IOException e) {}
 		
 	//	viewer = new ImageViewer(this.img, "Metodo de Kittler");

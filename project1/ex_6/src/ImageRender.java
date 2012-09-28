@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 public class ImageRender extends Canvas{
 
 	
-	private BufferedImage img;
+	public BufferedImage img;
 	
 	public ImageRender(BufferedImage img){
 		this.img = img;

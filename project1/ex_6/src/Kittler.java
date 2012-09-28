@@ -16,7 +16,7 @@ public class Kittler {
 		
 		
 		try {
-			this.img = BMPDecoder.read(new File("imag001.bmp"));
+			this.img = BMPDecoder.read(new File(image));
 		} catch (IOException e) {}
 		
 		//viewer = new ImageViewer(this.img, "Metodo de Kittler");
@@ -40,42 +40,42 @@ public class Kittler {
 		return out;
 	}
 	
-	private float mu_0(int k, int p0, int[] hist){
-		float sum = 0;
+	private double mu_0(int k, int p0, int[] hist){
+		double sum = 0;
 		for(int i =0; i<=k; i++){
-			sum += (float)(i * hist[i]);
+			sum += (double)(i * hist[i]);
 		}
 		
-		return sum / (float)p0;
+		return sum / (double)p0;
 	}
-	private float mu_1(int k, int p1, int[] hist){
-		float sum = 0;
+	private double mu_1(int k, int p1, int[] hist){
+		double sum = 0;
 		for(int i =k+1; i<256; i++){
-			sum += (float)(i * hist[i]);
+			sum += (double)(i * hist[i]);
 		}
 		
-		return sum / (float)p1;
+		return sum / (double)p1;
 	}
 	
-	private float var_0(int k, int p0, float mu_0, int[] hist){
-		float sum = 0;
+	private double var_0(int k, int p0, double mu_0, int[] hist){
+		double sum = 0;
 		for(int i =0; i<=k; i++){
-			sum += (float)(i - mu_0) * (float)(i - mu_0) * (float)hist[i];
+			sum += (double)(i - mu_0) * (double)(i - mu_0) * (double)hist[i];
 		}
-		return sum / (float)p0;
+		return sum / (double)p0;
 	}
-	private float var_1(int k, int p1, float mu_1, int[] hist){
-		float sum = 0;
+	private double var_1(int k, int p1, double mu_1, int[] hist){
+		double sum = 0;
 		for(int i = k+1; i<256; i++){
-			sum += (float)(i - mu_1) * (float)(i - mu_1) * (float)hist[i];
+			sum += (double)(i - mu_1) * (double)(i - mu_1) * (double)hist[i];
 		}
-		return sum / (float)p1;
+		return sum / (double)p1;
 	}
 	
-	private double J(int k, int p0, int p1, float var_0, float var_1){
+	private double J(int k, int p0, int p1, double var_0, double var_1){
 		
-		float sigma_0 = (float)Math.sqrt(var_0);
-		float sigma_1 = (float)Math.sqrt(var_1);
+		double sigma_0 = (double)Math.sqrt(var_0);
+		double sigma_1 = (double)Math.sqrt(var_1);
 		
 		return (1 + 2.0 * (p0 * Math.log(sigma_0)+ p1 * Math.log(sigma_1)) - 2.0 * (p0 * Math.log(p0) + p1*Math.log(p1)));
 		
@@ -92,11 +92,11 @@ public class Kittler {
 			int p_0 = this.p0(i, hist);
 			int p_1 = this.p1(i, hist);
 			
-			float mu0 = this.mu_0(i, p_0, hist);
-			float mu1 = this.mu_1(i, p_1, hist);
+			double mu0 = this.mu_0(i, p_0, hist);
+			double mu1 = this.mu_1(i, p_1, hist);
 			
-			float var0 = this.var_0(i, p_0, mu0, hist);
-			float var1 = this.var_1(i, p_1, mu1, hist);
+			double var0 = this.var_0(i, p_0, mu0, hist);
+			double var1 = this.var_1(i, p_1, mu1, hist);
 			
 			double j = this.J(i, p_0, p_1, var0, var1);
 			//System.out.println(j);
@@ -123,7 +123,7 @@ public class Kittler {
 	
 	public static void main(String[] args) {
 		
-		Kittler k = new Kittler("imag001.bmp");
+		Kittler k = new Kittler("imag103.bmp");
 		k.threshold();
 		ImageViewer viewer = new ImageViewer(k.img, "Metodo de Kittler");
 

@@ -1,8 +1,28 @@
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+
+import net.sf.image4j.codec.bmp.BMPDecoder;
 
 public class Common {
 
 	
+	public void printImage(int[][] img){
+		for(int[] a:img){
+			System.out.println(Arrays.toString(a));
+		}
+	}
+	
+	public BufferedImage readImage(String image){
+		try {
+			return BMPDecoder.read(new File(image));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	
 	public int greyLevel(int rgb){
