@@ -333,7 +333,20 @@ public class GUI extends JFrame {
 		JButton btnCargarImagen_1 = new JButton("Cargar Imagen");
 		btnCargarImagen_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				String filename = System.getProperty("user.dir");
+        BmpFilter bmps = new BmpFilter();
+        JFileChooser fc = new JFileChooser(new File(filename));
+        fc.setFileFilter(bmps);
+
+        fc.showOpenDialog(contentPane);
+        File selFile = fc.getSelectedFile();
+        String path = selFile.getAbsolutePath();
+
+				jimage3.img = c.readImage(path);
+				imageRender_Hist.img = histo.getHistogramImage(jimage3.img,256);
+				jimage3.repaint();
+				imageRender_Hist.repaint();
+
 			}
 		});
 		btnCargarImagen_1.setBounds(533, 24, 148, 25);

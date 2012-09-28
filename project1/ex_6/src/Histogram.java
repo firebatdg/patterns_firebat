@@ -42,7 +42,7 @@ public class Histogram {
 
 
     for(int i=0;i<values.length;i++){
-      values[i] = (double)count[i]/ (double)(img.getWidth() * img.getHeight()) * 1000.0f;
+      values[i] = (double)count[i]/ (double)(img.getWidth() * img.getHeight()) * 2000.0f;
     }
 
     return values;
