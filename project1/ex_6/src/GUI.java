@@ -33,6 +33,8 @@ public class GUI extends JFrame {
 	private RowCol rowcol = new RowCol();
 	//Excercise 5
 	private Morph morph = new Morph();
+	//Exercise 6
+	private Common c = new Common();
 	
 	/**
 	 * Launch the application.
@@ -413,6 +415,27 @@ public class GUI extends JFrame {
 		JPanel ex_6 = new JPanel();
 		tabbedPane.addTab("Ejercicio 6",ex_6);
 		ex_6.setLayout(null);
+		
+		JLabel lblNewLabel6 = new JLabel("Ejercicio 6: ");
+		lblNewLabel6.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel6.setBounds(37, 24, 586, 15);
+		ex_6.add(lblNewLabel6);
+		
+		//Image Container
+		JPanel p6_ImgContainer_1 = new JPanel();
+		p6_ImgContainer_1.setBounds(50, 100, 300, 300);
+		
+		final ImageRender jimage6 = new ImageRender(c.readImage("imag001.bmp"));
+		jimage6.setBounds(new Rectangle(0, 0, 300, 300));
+	
+		p6_ImgContainer_1.add(jimage6);
+		ex_6.add(p6_ImgContainer_1);
+		
+		Label label6 = new Label("Imagen");
+		label6.setBounds(50, 73, 68, 21);
+		ex_6.add(label6);
+		
+		
 		
 		/*###################################
 		 * 
