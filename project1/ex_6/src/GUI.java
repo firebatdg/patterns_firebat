@@ -35,6 +35,9 @@ public class GUI extends JFrame {
 	private Image1 image1 = new Image1();
 	//Exercise 2
 	private Regions regions = new Regions();
+	//Excercise 3
+	private Histogram histo = new Histogram();
+
 	//Exercise 4
 	private RowCol rowcol = new RowCol();
 	//Excercise 5
@@ -318,9 +321,8 @@ public class GUI extends JFrame {
 		JPanel panel3 = new JPanel();
 		panel3.setBounds(393, 100, 320, 240);
 		ex_3.add(panel3);
-		
-	
-		final ImageRender imageRender_Hist = new ImageRender(c.readImage("imag001.bmp"));
+
+		final ImageRender imageRender_Hist = new ImageRender(histo.getHistogramImage(jimage3.img,256));
 		imageRender_Hist.setBounds(new Rectangle(0, 0, 320, 240));
 		panel3.add(imageRender_Hist);
 		
