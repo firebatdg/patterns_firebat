@@ -294,6 +294,50 @@ public class GUI extends JFrame {
 		ex_3.setLayout(null);
 		
 		
+		
+		JLabel lblNewLabel3 = new JLabel("Ejercicio 3: ");
+		lblNewLabel3.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel3.setBounds(37, 24, 586, 15);
+		ex_3.add(lblNewLabel3);
+		
+		//Image Container
+		JPanel p3_ImgContainer_1 = new JPanel();
+		p3_ImgContainer_1.setBounds(50, 100, 320, 240);
+		
+		final ImageRender jimage3 = new ImageRender(c.readImage("imag001.bmp"));
+		jimage3.setBounds(new Rectangle(0, 0, 320, 240));
+	
+		p3_ImgContainer_1.add(jimage3);
+		ex_3.add(p3_ImgContainer_1);
+		
+		Label label3 = new Label("Imagen");
+		label3.setBounds(50, 73, 68, 21);
+		ex_3.add(label3);
+		
+		JPanel panel3 = new JPanel();
+		panel3.setBounds(393, 100, 320, 240);
+		ex_3.add(panel3);
+		
+	
+		final ImageRender imageRender_Hist = new ImageRender(c.readImage("imag001.bmp"));
+		imageRender_Hist.setBounds(new Rectangle(0, 0, 320, 240));
+		panel3.add(imageRender_Hist);
+		
+		Label label_3_1 = new Label("Histograma");
+		label_3_1.setBounds(393, 73, 95, 21);
+		ex_3.add(label_3_1);
+		
+		JButton btnCargarImagen_1 = new JButton("Cargar Imagen");
+		btnCargarImagen_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnCargarImagen_1.setBounds(533, 24, 148, 25);
+		ex_3.add(btnCargarImagen_1);
+		
+		
+		
 		/*###################################
 		 * 
 		 *  EXCERCISE 4
@@ -422,20 +466,20 @@ public class GUI extends JFrame {
 		 */
 		
 		JPanel ex_6 = new JPanel();
-		tabbedPane.addTab("Ejercicio 6",ex_6);
+		tabbedPane.addTab("Ejercicios 6, 7 y 8",ex_6);
 		ex_6.setLayout(null);
 		
-		JLabel lblNewLabel6 = new JLabel("Ejercicio 6: ");
+		JLabel lblNewLabel6 = new JLabel("Ejercicio 6, 7 y 8: ");
 		lblNewLabel6.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblNewLabel6.setBounds(37, 24, 586, 15);
 		ex_6.add(lblNewLabel6);
 		
 		//Image Container
 		JPanel p6_ImgContainer_1 = new JPanel();
-		p6_ImgContainer_1.setBounds(50, 100, 300, 300);
+		p6_ImgContainer_1.setBounds(50, 100, 320, 240);
 		
 		final ImageRender jimage6 = new ImageRender(c.readImage("imag001.bmp"));
-		jimage6.setBounds(new Rectangle(0, 0, 300, 300));
+		jimage6.setBounds(new Rectangle(0, 0, 320, 240));
 	
 		p6_ImgContainer_1.add(jimage6);
 		ex_6.add(p6_ImgContainer_1);
@@ -445,12 +489,12 @@ public class GUI extends JFrame {
 		ex_6.add(label6);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(393, 100, 300, 300);
+		panel.setBounds(393, 100, 320, 240);
 		ex_6.add(panel);
 		
 		otsu.threshold();
 		final ImageRender imageRender_Otsu = new ImageRender(otsu.img);
-		imageRender_Otsu.setBounds(new Rectangle(0, 0, 300, 300));
+		imageRender_Otsu.setBounds(new Rectangle(0, 0, 320, 240));
 		panel.add(imageRender_Otsu);
 		
 		Label label_1 = new Label("Otsu");
@@ -458,12 +502,12 @@ public class GUI extends JFrame {
 		ex_6.add(label_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(50, 439, 300, 300);
+		panel_1.setBounds(50, 439, 320, 240);
 		ex_6.add(panel_1);
 		
 		kittler.threshold();
 		final ImageRender imageRender_Kittler = new ImageRender(kittler.img);
-		imageRender_Kittler.setBounds(new Rectangle(0, 0, 300, 300));
+		imageRender_Kittler.setBounds(new Rectangle(0, 0, 320, 240));
 		panel_1.add(imageRender_Kittler);
 		
 		Label label_2 = new Label("Kittler");
@@ -471,7 +515,7 @@ public class GUI extends JFrame {
 		ex_6.add(label_2);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(393, 439, 300, 300);
+		panel_2.setBounds(393, 439, 320, 240);
 		ex_6.add(panel_2);
 		
 		sahoo.threshold();
@@ -520,18 +564,55 @@ public class GUI extends JFrame {
 		btnCargarImagen.setBounds(577, 19, 182, 25);
 		ex_6.add(btnCargarImagen);
 		
+		JLabel lblObjetosContadosCon = new JLabel("Objetos contados con Tetrapixeles");
+		lblObjetosContadosCon.setBounds(403, 352, 259, 15);
+		ex_6.add(lblObjetosContadosCon);
+		
+		JLabel lblObjetosContadosCon_1 = new JLabel("Objetos contados con Etiquetado");
+		lblObjetosContadosCon_1.setBounds(403, 391, 310, 15);
+		ex_6.add(lblObjetosContadosCon_1);
+		
+		JLabel lbl_tetra_otsu = new JLabel("New label");
+		lbl_tetra_otsu.setBounds(660, 352, 70, 15);
+		ex_6.add(lbl_tetra_otsu);
+		
+		JLabel lbl_flood_otsu = new JLabel("New label");
+		lbl_flood_otsu.setBounds(660, 391, 70, 15);
+		ex_6.add(lbl_flood_otsu);
+		
+		JLabel label_4 = new JLabel("Objetos contados con Tetrapixeles");
+		label_4.setBounds(50, 690, 259, 15);
+		ex_6.add(label_4);
+		
+		JLabel lbl_tetra_kittler = new JLabel("New label");
+		lbl_tetra_kittler.setBounds(307, 690, 70, 15);
+		ex_6.add(lbl_tetra_kittler);
+		
+		JLabel label_6 = new JLabel("Objetos contados con Etiquetado");
+		label_6.setBounds(50, 729, 310, 15);
+		ex_6.add(label_6);
+		
+		JLabel lbl_flood_kittler = new JLabel("New label");
+		lbl_flood_kittler.setBounds(307, 729, 70, 15);
+		ex_6.add(lbl_flood_kittler);
+		
+		JLabel label_8 = new JLabel("Objetos contados con Tetrapixeles");
+		label_8.setBounds(403, 690, 259, 15);
+		ex_6.add(label_8);
+		
+		JLabel lbl_tetra_sahoo = new JLabel("New label");
+		lbl_tetra_sahoo.setBounds(660, 690, 70, 15);
+		ex_6.add(lbl_tetra_sahoo);
+		
+		JLabel label_10 = new JLabel("Objetos contados con Etiquetado");
+		label_10.setBounds(403, 729, 310, 15);
+		ex_6.add(label_10);
+		
+		JLabel lbl_flood_sahoo = new JLabel("New label");
+		lbl_flood_sahoo.setBounds(660, 729, 70, 15);
+		ex_6.add(lbl_flood_sahoo);
 		
 		
-		/*###################################
-		 * 
-		 *  EXCERCISE 7 y 8
-		 * 
-		 * ##################################
-		 */
-		
-		JPanel ex_7 = new JPanel();
-		tabbedPane.addTab("Ejercicio 7 y 8",ex_7);
-		ex_7.setLayout(null);
 		
 		
 		
