@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.awt.image.BufferedImage;
 
 
 public class GUI extends JFrame {
@@ -35,6 +36,9 @@ public class GUI extends JFrame {
 	private Morph morph = new Morph();
 	//Exercise 6
 	private Common c = new Common();
+	private Otsu otsu = new Otsu("imag001.bmp");
+	private Kittler kittler = new Kittler("imag001.bmp");
+	private Sahoo sahoo = new Sahoo("imag001.bmp");
 	
 	/**
 	 * Launch the application.
@@ -56,10 +60,10 @@ public class GUI extends JFrame {
 	 * Create the frame.
 	 */
 	public GUI() {
-		setSize(new Dimension(800, 800));
+		setSize(new Dimension(820, 820));
 		setTitle("Tarea 1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 800);
+		setBounds(100, 100, 820, 820);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -434,6 +438,45 @@ public class GUI extends JFrame {
 		Label label6 = new Label("Imagen");
 		label6.setBounds(50, 73, 68, 21);
 		ex_6.add(label6);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(393, 100, 300, 300);
+		ex_6.add(panel);
+		
+		otsu.threshold();
+		ImageRender imageRender_Otsu = new ImageRender(otsu.img);
+		imageRender_Otsu.setBounds(new Rectangle(0, 0, 300, 300));
+		panel.add(imageRender_Otsu);
+		
+		Label label_1 = new Label("Otsu");
+		label_1.setBounds(393, 73, 68, 21);
+		ex_6.add(label_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(50, 439, 300, 300);
+		ex_6.add(panel_1);
+		
+		kittler.threshold();
+		ImageRender imageRender_1 = new ImageRender(kittler.img);
+		imageRender_1.setBounds(new Rectangle(0, 0, 300, 300));
+		panel_1.add(imageRender_1);
+		
+		Label label_2 = new Label("Kittler");
+		label_2.setBounds(50, 412, 68, 21);
+		ex_6.add(label_2);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(393, 439, 300, 300);
+		ex_6.add(panel_2);
+		
+		sahoo.threshold();
+		ImageRender imageRender_2 = new ImageRender(sahoo.img);
+		imageRender_2.setBounds(new Rectangle(0, 0, 300, 300));
+		panel_2.add(imageRender_2);
+		
+		Label label_3 = new Label("Sahoo");
+		label_3.setBounds(393, 412, 68, 21);
+		ex_6.add(label_3);
 		
 		
 		
