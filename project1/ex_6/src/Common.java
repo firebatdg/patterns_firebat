@@ -1,9 +1,14 @@
 import java.awt.image.*;
+import java.util.Arrays;
 
 public class Common {
 
 	
-	
+	public void printImage(int[][] img){
+		for(int[] a:img){
+			System.out.println(Arrays.toString(a));
+		}
+	}
 	
 	public int greyLevel(int rgb){
 		return rgb & 0xFF;
