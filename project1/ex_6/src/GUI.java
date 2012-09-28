@@ -10,12 +10,18 @@ import javax.swing.JTabbedPane;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Rectangle;
 
 
 public class GUI extends JFrame {
 
 	private JPanel contentPane;
-
+	
+	//Exercise 1
+	private Image1 image1 = new Image1();
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +56,10 @@ public class GUI extends JFrame {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0,0,700,700);
+	
+		contentPane.add(tabbedPane);
 		
+		//Excercise 1
 		JPanel ex_1 = new JPanel();
 		tabbedPane.addTab("Ejercicio 1",ex_1);
 		ex_1.setLayout(null);
@@ -60,12 +69,19 @@ public class GUI extends JFrame {
 		lblNewLabel.setBounds(37, 24, 586, 15);
 		ex_1.add(lblNewLabel);
 		
+		//Image Container
 		JPanel p1_ImgContainer = new JPanel();
-		p1_ImgContainer.setBounds(100, 100, -169, 153);
+		p1_ImgContainer.setBounds(50, 100, 300, 300);
+		JBinImage jimage1 = new JBinImage();
+		jimage1.setBounds(new Rectangle(0, 0, 300, 300));
+		jimage1.setImg(this.image1.pixels);
+		p1_ImgContainer.add(jimage1);
 		ex_1.add(p1_ImgContainer);
+		
+		
+		
+		
 		JPanel ex_2 = new JPanel();
 		tabbedPane.addTab("Ejercicio 2",ex_2);
-	
-		contentPane.add(tabbedPane);
 	}
 }

@@ -1,7 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class JBinImage extends JComponent{
+public class JBinImage extends Canvas{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private int[][] img;
 	
@@ -12,7 +17,9 @@ public class JBinImage extends JComponent{
 	private double dy;
 	
 	
-	
+	public JBinImage(){
+		super();
+	}
 	
 	public void setImg(int[][] img){
 		this.img = img;
@@ -20,13 +27,18 @@ public class JBinImage extends JComponent{
 		max_x = this.getBounds().width;
 		max_y = this.getBounds().height;
 		
+		System.out.printf("%f,%f\n",max_x, max_y);
+		
+		
 		dx = max_x / img[0].length;
 		dy = max_y / img.length;
 		
+		System.out.printf("%f,%f\n",dx, dy);
+		
 		
 	}
-	
-	public void paintComponent(Graphics g){
+	@Override
+	public void paint(final Graphics g){
 		
 		//grid with image square pixels
 		
@@ -41,11 +53,13 @@ public class JBinImage extends JComponent{
 				}else{
 					g.setColor(Color.white);
 				}
-				g.drawRect((int)cur_x, (int)cur_y, (int)dx, (int)dy);
-				
+				g.fillRect((int)cur_x, (int)cur_y, (int)dx, (int)dy);
+				System.out.printf("%f,%f = %d\n",cur_x, cur_y, img[y][x]);
 				cur_x += dx;
 			}
 			cur_y +=dy;
+			
+		
 		}
 		
 		

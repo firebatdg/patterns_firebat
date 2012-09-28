@@ -2,7 +2,7 @@ import java.util.*;
 public class Image1 {
 
 	
-	private int[][] pixels;
+	public int[][] pixels;
 	
 	public Image1(){
 		
