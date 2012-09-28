@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
+
 import java.awt.GridLayout;
 import java.awt.Panel;
 import javax.swing.JTabbedPane;
@@ -15,11 +17,14 @@ import java.awt.Label;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 
 public class GUI extends JFrame {
@@ -444,7 +449,7 @@ public class GUI extends JFrame {
 		ex_6.add(panel);
 		
 		otsu.threshold();
-		ImageRender imageRender_Otsu = new ImageRender(otsu.img);
+		final ImageRender imageRender_Otsu = new ImageRender(otsu.img);
 		imageRender_Otsu.setBounds(new Rectangle(0, 0, 300, 300));
 		panel.add(imageRender_Otsu);
 		
@@ -457,9 +462,9 @@ public class GUI extends JFrame {
 		ex_6.add(panel_1);
 		
 		kittler.threshold();
-		ImageRender imageRender_1 = new ImageRender(kittler.img);
-		imageRender_1.setBounds(new Rectangle(0, 0, 300, 300));
-		panel_1.add(imageRender_1);
+		final ImageRender imageRender_Kittler = new ImageRender(kittler.img);
+		imageRender_Kittler.setBounds(new Rectangle(0, 0, 300, 300));
+		panel_1.add(imageRender_Kittler);
 		
 		Label label_2 = new Label("Kittler");
 		label_2.setBounds(50, 412, 68, 21);
@@ -470,13 +475,50 @@ public class GUI extends JFrame {
 		ex_6.add(panel_2);
 		
 		sahoo.threshold();
-		ImageRender imageRender_2 = new ImageRender(sahoo.img);
-		imageRender_2.setBounds(new Rectangle(0, 0, 300, 300));
-		panel_2.add(imageRender_2);
+		final ImageRender imageRender_Sahoo = new ImageRender(sahoo.img);
+		imageRender_Sahoo.setBounds(new Rectangle(0, 0, 300, 300));
+		panel_2.add(imageRender_Sahoo);
 		
 		Label label_3 = new Label("Sahoo");
 		label_3.setBounds(393, 412, 68, 21);
 		ex_6.add(label_3);
+		
+		JButton btnCargarImagen = new JButton("Cargar Imagen");
+		btnCargarImagen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String filename = System.getProperty("user.dir");
+				BmpFilter bmps = new BmpFilter();
+				JFileChooser fc = new JFileChooser(new File(filename));
+				fc.setFileFilter(bmps);
+
+				fc.showOpenDialog(contentPane);
+				File selFile = fc.getSelectedFile();
+				String path = selFile.getAbsolutePath();
+				
+				jimage6.img = c.readImage(path);
+				jimage6.repaint();
+				
+				otsu = new Otsu(path);
+				otsu.threshold();
+				imageRender_Otsu.img = otsu.img;
+				imageRender_Otsu.repaint();
+				
+				kittler = new Kittler(path);
+				kittler.threshold();
+				imageRender_Kittler.img = kittler.img;
+				imageRender_Kittler.repaint();
+				
+
+				sahoo = new Sahoo(path);
+				sahoo.threshold();
+				imageRender_Sahoo.img = sahoo.img;
+				imageRender_Sahoo.repaint();
+				
+			}
+		});
+		btnCargarImagen.setBounds(577, 19, 182, 25);
+		ex_6.add(btnCargarImagen);
 		
 		
 		
@@ -494,4 +536,15 @@ public class GUI extends JFrame {
 		
 		
 	}
+}
+
+class BmpFilter extends FileFilter{
+    @Override
+public boolean accept(File f){
+    return f.getName().toLowerCase().endsWith(".bmp")||f.isDirectory();
+}
+    @Override
+    public String getDescription(){
+        return "Bmp files (*.bmp)";
+    }
 }
