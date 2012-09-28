@@ -44,6 +44,7 @@ public class GUI extends JFrame {
 	private Otsu otsu = new Otsu("imag001.bmp");
 	private Kittler kittler = new Kittler("imag001.bmp");
 	private Sahoo sahoo = new Sahoo("imag001.bmp");
+	private CountObjects counter = new CountObjects();
 	
 	/**
 	 * Launch the application.
@@ -527,6 +528,75 @@ public class GUI extends JFrame {
 		label_3.setBounds(393, 412, 68, 21);
 		ex_6.add(label_3);
 		
+
+		JLabel lblObjetosContadosCon = new JLabel("Objetos contados con Tetrapixeles");
+		lblObjetosContadosCon.setBounds(403, 352, 259, 15);
+		ex_6.add(lblObjetosContadosCon);
+		
+		JLabel lblObjetosContadosCon_1 = new JLabel("Objetos contados con Etiquetado");
+		lblObjetosContadosCon_1.setBounds(403, 391, 310, 15);
+		ex_6.add(lblObjetosContadosCon_1);
+		
+		final JLabel lbl_tetra_otsu = new JLabel("New label");
+		lbl_tetra_otsu.setBounds(660, 352, 70, 15);
+		ex_6.add(lbl_tetra_otsu);
+		
+		final JLabel lbl_flood_otsu = new JLabel("New label");
+		lbl_flood_otsu.setBounds(660, 391, 70, 15);
+		ex_6.add(lbl_flood_otsu);
+		
+		JLabel label_4 = new JLabel("Objetos contados con Tetrapixeles");
+		label_4.setBounds(50, 690, 259, 15);
+		ex_6.add(label_4);
+		
+		final JLabel lbl_tetra_kittler = new JLabel("New label");
+		lbl_tetra_kittler.setBounds(307, 690, 70, 15);
+		ex_6.add(lbl_tetra_kittler);
+		
+		JLabel label_6 = new JLabel("Objetos contados con Etiquetado");
+		label_6.setBounds(50, 729, 310, 15);
+		ex_6.add(label_6);
+		
+		final JLabel lbl_flood_kittler = new JLabel("New label");
+		lbl_flood_kittler.setBounds(307, 729, 70, 15);
+		ex_6.add(lbl_flood_kittler);
+		
+		JLabel label_8 = new JLabel("Objetos contados con Tetrapixeles");
+		label_8.setBounds(403, 690, 259, 15);
+		ex_6.add(label_8);
+		
+		final JLabel lbl_tetra_sahoo = new JLabel("New label");
+		lbl_tetra_sahoo.setBounds(660, 690, 70, 15);
+		ex_6.add(lbl_tetra_sahoo);
+		
+		JLabel label_10 = new JLabel("Objetos contados con Etiquetado");
+		label_10.setBounds(403, 729, 310, 15);
+		ex_6.add(label_10);
+		
+		final JLabel lbl_flood_sahoo = new JLabel("New label");
+		lbl_flood_sahoo.setBounds(660, 729, 70, 15);
+		ex_6.add(lbl_flood_sahoo);
+		
+		
+		//Count objects
+		
+		int[][] matrixOtsu = counter.GetBinaryMatrix("imag001.bmp", "otsu");
+		int[][] matrixKittler = counter.GetBinaryMatrix("imag001.bmp", "kittler");
+		int[][] matrixSahoo = counter.GetBinaryMatrix("imag001.bmp", "sahoo");
+		
+		
+		lbl_tetra_otsu.setText(counter.count_using_tetrapixels(matrixOtsu) + "");
+		lbl_flood_otsu.setText(counter.count_using_labels(matrixOtsu) + "");
+		
+		lbl_tetra_kittler.setText(counter.count_using_tetrapixels(matrixKittler) + "");
+		lbl_flood_kittler.setText(counter.count_using_labels(matrixKittler) + "");
+		
+		lbl_tetra_sahoo.setText(counter.count_using_tetrapixels(matrixSahoo) + "");
+		lbl_flood_sahoo.setText(counter.count_using_labels(matrixSahoo) + "");
+		
+		
+		
+		
 		JButton btnCargarImagen = new JButton("Cargar Imagen");
 		btnCargarImagen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -559,58 +629,28 @@ public class GUI extends JFrame {
 				imageRender_Sahoo.img = sahoo.img;
 				imageRender_Sahoo.repaint();
 				
+				
+				//Count objects
+				
+				int[][] matrixOtsu = counter.GetBinaryMatrix(path, "otsu");
+				int[][] matrixKittler = counter.GetBinaryMatrix(path, "kittler");
+				int[][] matrixSahoo = counter.GetBinaryMatrix(path, "sahoo");
+				
+				
+				lbl_tetra_otsu.setText(counter.count_using_tetrapixels(matrixOtsu) + "");
+				lbl_flood_otsu.setText(counter.count_using_labels(matrixOtsu) + "");
+				
+				lbl_tetra_kittler.setText(counter.count_using_tetrapixels(matrixKittler) + "");
+				lbl_flood_kittler.setText(counter.count_using_labels(matrixKittler) + "");
+				
+				lbl_tetra_sahoo.setText(counter.count_using_tetrapixels(matrixSahoo) + "");
+				lbl_flood_sahoo.setText(counter.count_using_labels(matrixSahoo) + "");
+				
 			}
 		});
 		btnCargarImagen.setBounds(577, 19, 182, 25);
 		ex_6.add(btnCargarImagen);
 		
-		JLabel lblObjetosContadosCon = new JLabel("Objetos contados con Tetrapixeles");
-		lblObjetosContadosCon.setBounds(403, 352, 259, 15);
-		ex_6.add(lblObjetosContadosCon);
-		
-		JLabel lblObjetosContadosCon_1 = new JLabel("Objetos contados con Etiquetado");
-		lblObjetosContadosCon_1.setBounds(403, 391, 310, 15);
-		ex_6.add(lblObjetosContadosCon_1);
-		
-		JLabel lbl_tetra_otsu = new JLabel("New label");
-		lbl_tetra_otsu.setBounds(660, 352, 70, 15);
-		ex_6.add(lbl_tetra_otsu);
-		
-		JLabel lbl_flood_otsu = new JLabel("New label");
-		lbl_flood_otsu.setBounds(660, 391, 70, 15);
-		ex_6.add(lbl_flood_otsu);
-		
-		JLabel label_4 = new JLabel("Objetos contados con Tetrapixeles");
-		label_4.setBounds(50, 690, 259, 15);
-		ex_6.add(label_4);
-		
-		JLabel lbl_tetra_kittler = new JLabel("New label");
-		lbl_tetra_kittler.setBounds(307, 690, 70, 15);
-		ex_6.add(lbl_tetra_kittler);
-		
-		JLabel label_6 = new JLabel("Objetos contados con Etiquetado");
-		label_6.setBounds(50, 729, 310, 15);
-		ex_6.add(label_6);
-		
-		JLabel lbl_flood_kittler = new JLabel("New label");
-		lbl_flood_kittler.setBounds(307, 729, 70, 15);
-		ex_6.add(lbl_flood_kittler);
-		
-		JLabel label_8 = new JLabel("Objetos contados con Tetrapixeles");
-		label_8.setBounds(403, 690, 259, 15);
-		ex_6.add(label_8);
-		
-		JLabel lbl_tetra_sahoo = new JLabel("New label");
-		lbl_tetra_sahoo.setBounds(660, 690, 70, 15);
-		ex_6.add(lbl_tetra_sahoo);
-		
-		JLabel label_10 = new JLabel("Objetos contados con Etiquetado");
-		label_10.setBounds(403, 729, 310, 15);
-		ex_6.add(label_10);
-		
-		JLabel lbl_flood_sahoo = new JLabel("New label");
-		lbl_flood_sahoo.setBounds(660, 729, 70, 15);
-		ex_6.add(lbl_flood_sahoo);
 		
 		
 		
