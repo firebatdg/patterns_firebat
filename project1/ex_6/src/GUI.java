@@ -18,6 +18,7 @@ import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 
 public class GUI extends JFrame {
@@ -28,6 +29,8 @@ public class GUI extends JFrame {
 	private Image1 image1 = new Image1();
 	//Exercise 2
 	private Regions regions = new Regions();
+	//Exercise 4
+	private RowCol rowcol = new RowCol();
 	
 	/**
 	 * Launch the application.
@@ -276,6 +279,111 @@ public class GUI extends JFrame {
 		JPanel ex_3 = new JPanel();
 		tabbedPane.addTab("Ejercicio 3",ex_3);
 		ex_3.setLayout(null);
+		
+		
+		/*###################################
+		 * 
+		 *  EXCERCISE 4
+		 * 
+		 * ##################################
+		 */
+		
+		JPanel ex_4 = new JPanel();
+		tabbedPane.addTab("Ejercicio 4",ex_4);
+		ex_4.setLayout(null);
+		
+		
+		JLabel lblNewLabel4 = new JLabel("Ejercicio 4: ");
+		lblNewLabel4.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel4.setBounds(37, 24, 586, 15);
+		ex_4.add(lblNewLabel4);
+		
+		//Image Container
+		JPanel p4_ImgContainer = new JPanel();
+		p4_ImgContainer.setBounds(50, 100, 300, 300);
+		final JBinImage jimage4 = new JBinImage();
+		jimage4.setBounds(new Rectangle(0, 0, 300, 300));
+		jimage4.setImg(this.rowcol.pixels);
+		p4_ImgContainer.add(jimage4);
+		ex_4.add(p4_ImgContainer);
+		
+		Label label4 = new Label("Imagen");
+		label4.setBounds(50, 73, 68, 21);
+		ex_4.add(label4);
+		
+		JLabel lblPixelesConValor_1 = new JLabel("Pixeles con valor 1 en filas");
+		lblPixelesConValor_1.setBounds(378, 100, 300, 15);
+		ex_4.add(lblPixelesConValor_1);
+		
+		JLabel lblPixelesConValor_2 = new JLabel("Pixeles con valor 1 en columnas");
+		lblPixelesConValor_2.setBounds(378, 159, 300, 15);
+		ex_4.add(lblPixelesConValor_2);
+		
+		int[][]rc = this.rowcol.getRowCols();
+		JLabel lbl_rows = new JLabel(Arrays.toString(rc[0]));
+		lbl_rows.setBounds(388, 127, 323, 15);
+		ex_4.add(lbl_rows);
+		
+		JLabel lbl_cols = new JLabel(Arrays.toString(rc[1]));
+		lbl_cols.setBounds(388, 186, 323, 15);
+		ex_4.add(lbl_cols);
+		
+		
+		/*###################################
+		 * 
+		 *  EXCERCISE 5
+		 * 
+		 * ##################################
+		 */
+		
+		JPanel ex_5 = new JPanel();
+		tabbedPane.addTab("Ejercicio 5",ex_5);
+		ex_5.setLayout(null);
+		
+		
+		
+		JLabel lblNewLabel5 = new JLabel("Ejercicio 5: ");
+		lblNewLabel5.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel5.setBounds(37, 24, 586, 15);
+		ex_5.add(lblNewLabel5);
+		
+		//Image Container
+		JPanel p5_ImgContainer = new JPanel();
+		p5_ImgContainer.setBounds(50, 100, 300, 300);
+		final JBinImage jimage5 = new JBinImage();
+		jimage5.setBounds(new Rectangle(0, 0, 300, 300));
+		jimage5.setImg(this.rowcol.pixels);
+		p5_ImgContainer.add(jimage5);
+		ex_5.add(p5_ImgContainer);
+		
+		Label label5 = new Label("Imagen");
+		label5.setBounds(50, 73, 68, 21);
+		ex_5.add(label4);
+		
+		
+		
+		
+		/*###################################
+		 * 
+		 *  EXCERCISE 6
+		 * 
+		 * ##################################
+		 */
+		
+		JPanel ex_6 = new JPanel();
+		tabbedPane.addTab("Ejercicio 6",ex_6);
+		ex_6.setLayout(null);
+		
+		/*###################################
+		 * 
+		 *  EXCERCISE 7 y 8
+		 * 
+		 * ##################################
+		 */
+		
+		JPanel ex_7 = new JPanel();
+		tabbedPane.addTab("Ejercicio 7 y 8",ex_7);
+		ex_7.setLayout(null);
 		
 		
 		
