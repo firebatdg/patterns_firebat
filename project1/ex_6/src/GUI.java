@@ -31,6 +31,8 @@ public class GUI extends JFrame {
 	private Regions regions = new Regions();
 	//Exercise 4
 	private RowCol rowcol = new RowCol();
+	//Excercise 5
+	private Morph morph = new Morph();
 	
 	/**
 	 * Launch the application.
@@ -352,13 +354,51 @@ public class GUI extends JFrame {
 		p5_ImgContainer.setBounds(50, 100, 300, 300);
 		final JBinImage jimage5 = new JBinImage();
 		jimage5.setBounds(new Rectangle(0, 0, 300, 300));
-		jimage5.setImg(this.rowcol.pixels);
+		jimage5.setImg(this.morph.img);
 		p5_ImgContainer.add(jimage5);
 		ex_5.add(p5_ImgContainer);
 		
 		Label label5 = new Label("Imagen");
 		label5.setBounds(50, 73, 68, 21);
-		ex_5.add(label4);
+		ex_5.add(label5);
+		
+		JButton btnSepararComponentes = new JButton("Erosion + Dilatacion");
+		btnSepararComponentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				jimage5.setImg(morph.split_objects());
+				jimage5.repaint();
+				
+			}
+		});
+		btnSepararComponentes.setBounds(389, 100, 272, 25);
+		ex_5.add(btnSepararComponentes);
+		
+		final JLabel lbl_comp5 = new JLabel("");
+		lbl_comp5.setBounds(679, 145, 70, 15);
+		ex_5.add(lbl_comp5);
+		
+		JButton btnContarComponentes = new JButton("Contar Componentes");
+		btnContarComponentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lbl_comp5.setText(morph.countObj(jimage5.img)+"");
+				
+			}
+		});
+		btnContarComponentes.setBounds(389, 140, 272, 25);
+		ex_5.add(btnContarComponentes);
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jimage5.setImg(morph.img);
+				jimage5.repaint();
+			}
+		});
+		btnReset.setBounds(389, 177, 272, 25);
+		ex_5.add(btnReset);
+		
+		
 		
 		
 		

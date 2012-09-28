@@ -1,5 +1,32 @@
 import java.util.*;
 public class Morph {
+	
+	
+	public int[][] img;
+	
+	public Morph(){
+		 this.img =new int[][] {{0,0,0,0,0,0,0,0,0,0},
+                 {0,1,1,1,0,0,0,0,0,0},
+                 {0,1,1,1,0,0,0,0,0,0},
+                 {0,1,1,1,0,0,0,0,0,0},
+                 {0,0,0,1,1,0,0,0,0,0},
+                 {0,0,0,0,1,0,0,0,0,0},
+                 {0,0,0,0,1,1,1,1,1,0},
+                 {0,0,0,0,0,0,1,1,1,0},
+                 {0,0,0,0,0,0,1,1,1,0},
+                 {0,0,0,0,0,0,0,0,0,0}};
+	
+		
+	
+	}
+	
+	public int[][] split_objects(){
+		int[][] pattern = {{0,1,0}, {1,1,1}, {0,1,0}};
+		int[][] out = this.erosion(this.img, pattern);
+		int[][] out2 = this.dilate(out, pattern);
+		
+		return out2;
+	}
 
 	
 	public int[][] erosion(int[][] original, int[][] pattern){
@@ -16,7 +43,7 @@ public class Morph {
 					int px = 1;
 					for(int k=0;k<8;k++){
 						try{
-							System.out.printf("%d & %d\n", pattern[1+dy[k]][1+dx[k]], original[i+dy[k]][j+dx[k]]);
+						//	System.out.printf("%d & %d\n", pattern[1+dy[k]][1+dx[k]], original[i+dy[k]][j+dx[k]]);
 							if(pattern[1+dy[k]][1+dx[k]] == 1 && original[i+dy[k]][j+dx[k]] == 0 ){
 								px = 0;
 								break;
