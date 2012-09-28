@@ -26,8 +26,8 @@ public class GUI extends JFrame {
 	
 	//Exercise 1
 	private Image1 image1 = new Image1();
-	
-	
+	//Exercise 2
+	private Regions regions = new Regions();
 	
 	/**
 	 * Launch the application.
@@ -65,6 +65,13 @@ public class GUI extends JFrame {
 		tabbedPane.setBounds(0,0,700,700);
 	
 		contentPane.add(tabbedPane);
+		
+		/*###################################
+		 * 
+		 *  EXCERCISE 1 
+		 * 
+		 * ##################################
+		 */
 		
 		//Excercise 1
 		JPanel ex_1 = new JPanel();
@@ -186,8 +193,91 @@ public class GUI extends JFrame {
 		ex_1.add(btnReestablecer);
 		
 		
+		/*###################################
+		 * 
+		 *  EXCERCISE 2
+		 * 
+		 * ##################################
+		 */
+		
+		
 		JPanel ex_2 = new JPanel();
 		tabbedPane.addTab("Ejercicio 2",ex_2);
+		ex_2.setLayout(null);
+		
+		JLabel lblNewLabel2 = new JLabel("Ejercicio 2: ");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel.setBounds(37, 24, 586, 15);
+		ex_2.add(lblNewLabel2);
+		
+		//Image Container
+		JPanel p2_ImgContainer = new JPanel();
+		p2_ImgContainer.setBounds(50, 100, 300, 300);
+		final JBinImage jimage2 = new JBinImage();
+		jimage2.setBounds(new Rectangle(0, 0, 300, 300));
+		jimage2.setImg(this.regions.imgA);
+		p2_ImgContainer.add(jimage2);
+		ex_2.add(p2_ImgContainer);
+		
+		Label label2 = new Label("Imagen");
+		label2.setBounds(50, 73, 68, 21);
+		ex_2.add(label2);
+		
+		JButton btnCargarImagenA = new JButton("Cargar Imagen A");
+		btnCargarImagenA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				regions.reset();
+				jimage2.setImg(regions.imgA);
+				jimage2.repaint();
+			}
+		});
+		btnCargarImagenA.setBounds(362, 107, 227, 25);
+		ex_2.add(btnCargarImagenA);
+		
+		JButton btnCargarImagenB = new JButton("Cargar Imagen B");
+		btnCargarImagenB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				regions.reset();
+				jimage2.setImg(regions.imgB);
+				jimage2.repaint();
+			}
+		});
+		btnCargarImagenB.setBounds(362, 144, 227, 25);
+		ex_2.add(btnCargarImagenB);
+		
+		JButton btnEtiquetarComponentes = new JButton("Etiquetar Componentes");
+		btnEtiquetarComponentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				regions.mark_regions(jimage2.img);
+				jimage2.repaint();
+			}
+		});
+		btnEtiquetarComponentes.setBounds(362, 181, 227, 25);
+		ex_2.add(btnEtiquetarComponentes);
+		
+		JLabel lblVerdeSimplementeConectadas = new JLabel("Verde: Simplemente Conectadas");
+		lblVerdeSimplementeConectadas.setBounds(60, 413, 290, 15);
+		ex_2.add(lblVerdeSimplementeConectadas);
+		
+		JLabel lblRojoMultiplemeneteConectadas = new JLabel("Rojo: Multiplemenete Conectadas");
+		lblRojoMultiplemeneteConectadas.setBounds(60, 440, 290, 15);
+		ex_2.add(lblRojoMultiplemeneteConectadas);
+		
+		
+		
+		/*###################################
+		 * 
+		 *  EXCERCISE 3
+		 * 
+		 * ##################################
+		 */
+		
+		JPanel ex_3 = new JPanel();
+		tabbedPane.addTab("Ejercicio 3",ex_3);
+		ex_3.setLayout(null);
+		
+		
+		
 	}
-	
 }

@@ -8,7 +8,7 @@ public class JBinImage extends Canvas{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int[][] img;
+	public int[][] img;
 	
 	private double max_x;
 	private double max_y;
