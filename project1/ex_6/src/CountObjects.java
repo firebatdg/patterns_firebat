@@ -67,16 +67,16 @@ public class CountObjects {
 	public static void main(String[] args) {
 		CountObjects counter = new CountObjects();
 		Common c= new Common();
-		int[][] matrixOtsu = counter.GetBinaryMatrix("imag001.bmp", "otsu");
+		int[][] matrixOtsu = counter.GetBinaryMatrix("imag103.bmp", "otsu");
 		//c.printImage(matrixOtsu);
 		
 
-		int[][] matrixKittler = counter.GetBinaryMatrix("imag001.bmp", "kittler");
+		int[][] matrixKittler = counter.GetBinaryMatrix("imag103.bmp", "kittler");
 	//	int[][] matrixSahoo = counter.GetBinaryMatrix("imag001.bmp", "sahoo");
 		
 		System.out.println("Number of Objects");
 		System.out.println(counter.count_using_tetrapixels(matrixKittler));
-		System.out.println(counter.count_using_labels(matrixKittler));
+		System.out.println(counter.count_using_labels(matrixOtsu));
 		
 		
 	}

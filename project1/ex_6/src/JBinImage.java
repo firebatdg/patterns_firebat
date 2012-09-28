@@ -16,9 +16,17 @@ public class JBinImage extends Canvas{
 	private double dx;
 	private double dy;
 	
+	private Color[] colors;
 	
 	public JBinImage(){
 		super();
+		
+		colors = new Color[8];
+		colors[0] = Color.black;
+		colors[1] = Color.white;
+		colors[2] = Color.green;
+		colors[3] = Color.red;
+		
 	}
 	
 	public void setImg(int[][] img){
@@ -27,13 +35,13 @@ public class JBinImage extends Canvas{
 		max_x = this.getBounds().width;
 		max_y = this.getBounds().height;
 		
-		System.out.printf("%f,%f\n",max_x, max_y);
+		
 		
 		
 		dx = max_x / img[0].length;
 		dy = max_y / img.length;
 		
-		System.out.printf("%f,%f\n",dx, dy);
+		
 		
 		
 	}
@@ -48,13 +56,11 @@ public class JBinImage extends Canvas{
 			cur_x=0;
 			for(int x=0;x<img[y].length;x++){
 				
-				if(img[y][x]==0){
-					g.setColor(Color.black);
-				}else{
-					g.setColor(Color.white);
-				}
+				
+				g.setColor(this.colors[img[y][x]]);
+				
 				g.fillRect((int)cur_x, (int)cur_y, (int)dx, (int)dy);
-				System.out.printf("%f,%f = %d\n",cur_x, cur_y, img[y][x]);
+				
 				cur_x += dx;
 			}
 			cur_y +=dy;

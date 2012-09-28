@@ -16,7 +16,7 @@ public class Kittler {
 		
 		
 		try {
-			this.img = BMPDecoder.read(new File("imag001.bmp"));
+			this.img = BMPDecoder.read(new File(image));
 		} catch (IOException e) {}
 		
 		//viewer = new ImageViewer(this.img, "Metodo de Kittler");
@@ -123,7 +123,7 @@ public class Kittler {
 	
 	public static void main(String[] args) {
 		
-		Kittler k = new Kittler("imag001.bmp");
+		Kittler k = new Kittler("imag103.bmp");
 		k.threshold();
 		ImageViewer viewer = new ImageViewer(k.img, "Metodo de Kittler");
 
