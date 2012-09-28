@@ -35,7 +35,6 @@ public class CountObjects {
 		
 		Common c = new Common();
 		int[][] matrix = c.get_matrix_from_image(img);
-		c.printImage(matrix);
 		return matrix;
 		
 	}
@@ -58,7 +57,6 @@ public class CountObjects {
 				}
 			}
 		}
-		System.out.printf("Current_Label %d\n", current_label);
 		return current_label-2;
 		
 		
@@ -73,12 +71,13 @@ public class CountObjects {
 		//c.printImage(matrixOtsu);
 		
 
-		//int[][] matrixKittler = counter.GetBinaryMatrix("imag001.bmp", "kittler");
+		int[][] matrixKittler = counter.GetBinaryMatrix("imag001.bmp", "kittler");
 	//	int[][] matrixSahoo = counter.GetBinaryMatrix("imag001.bmp", "sahoo");
 		
 		System.out.println("Number of Objects");
-		System.out.println(counter.count_using_labels(matrixOtsu));
-		System.out.println(counter.count_using_tetrapixels(matrixOtsu));
+		System.out.println(counter.count_using_tetrapixels(matrixKittler));
+		System.out.println(counter.count_using_labels(matrixKittler));
+		
 		
 	}
 
