@@ -111,6 +111,86 @@ public class Moments {
 		return Math.pow( eta20 - eta02 ,2) + Math.pow( 2 * eta11, 2);
 	}
 	
+	public double getFlusser1(int region){
+		
+		double mu00 = this.getMu(region, 0,0);
+		double mu20 = this.getMu(region, 2,0);
+		double mu02 = this.getMu(region, 0,2);
+		double mu11 = this.getMu(region, 1,1);
+		
+		return (mu20 * mu02 - mu11) / Math.pow(mu00, 4);
+		
+	}
+	
+	public double getFlusser2(int region){
+		
+		double mu00 = this.getMu(region, 0,0);
+		double mu11 = this.getMu(region, 1,1);
+		double mu12 = this.getMu(region, 1,2);
+		
+		double mu20 = this.getMu(region, 2,0);
+		double mu02 = this.getMu(region, 0,2);
+		double mu21 = this.getMu(region, 2,1);
+		
+		double mu30 = this.getMu(region, 3,0);
+		double mu03 = this.getMu(region, 0,3);
+		
+		return (mu30 * mu30 * mu03 * mu03 - 6 * mu30 * mu21 * mu12 * mu03 + 4 * mu30*mu12*mu12 + 4*mu21*mu21*mu03  - 3*mu21*mu21*mu12*mu12)/Math.pow(mu00, 10);
+		
+		
+	}
+	
+	
+	public double getFlusser3(int region){
+		
+		double mu00 = this.getMu(region, 0,0);
+		double mu11 = this.getMu(region, 1,1);
+		double mu12 = this.getMu(region, 1,2);
+		
+		double mu20 = this.getMu(region, 2,0);
+		double mu02 = this.getMu(region, 0,2);
+		double mu21 = this.getMu(region, 2,1);
+		
+		double mu30 = this.getMu(region, 3,0);
+		double mu03 = this.getMu(region, 0,3);
+		
+		return (mu20 * (mu21 * mu03 - mu12 * mu12) - mu11 * (mu30*mu03 - mu21 * mu12) + mu02 * (mu30*mu12 - mu21 * mu21)) / Math.pow(mu00, 7);
+		
+		
+		
+		
+	}
+	
+	public double getFlusser4(int region){
+		
+		double mu00 = this.getMu(region, 0,0);
+		double mu11 = this.getMu(region, 1,1);
+		double mu12 = this.getMu(region, 1,2);
+		
+		double mu20 = this.getMu(region, 2,0);
+		double mu02 = this.getMu(region, 0,2);
+		double mu21 = this.getMu(region, 2,1);
+		
+		double mu30 = this.getMu(region, 3,0);
+		double mu03 = this.getMu(region, 0,3);
+		
+		return (Math.pow(mu20, 3) * Math.pow(mu03, 2) - 6 * mu30 * mu11 * mu12 * mu03 
+				-6 * Math.pow(mu20, 2) * mu02 * mu21 * mu03 + 9 * Math.pow(mu20, 2) * mu02 * Math.pow(mu12, 2)
+				+ 12 * mu20 * Math.pow(mu11, 2) * mu21 * mu03 + 6 * mu20 * mu11 * mu02 * mu30 * mu03
+				-18 * mu20 * mu11 * mu02 * mu21 * mu12 - 8 * Math.pow(mu11, 3) * mu30 * mu03 
+				-6 * mu20 * Math.pow(mu02, 2) * mu30 * mu12 + 9 * mu20 * Math.pow(mu02, 2 ) * Math.pow(mu21, 2)
+				+12 * Math.pow(mu11,2) * mu02 * mu30 * mu12 -6 * mu11 * Math.pow(mu02, 2) * mu30 * mu21
+				+ Math.pow(mu02,3) * Math.pow(mu30, 2))/Math.pow(mu00, 11);
+				
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	public Point2D.Double getCentroid(int region){
 		
 		int M00 = this.getMoment(region, 0,0);
@@ -139,6 +219,8 @@ public class Moments {
 		System.out.println(m.getHu1(3));
 		System.out.println(m.getHu2(2));
 		System.out.println(m.getHu2(3));
+		System.out.println(m.getFlusser4(2));
+		System.out.println(m.getFlusser4(3));
 		ImageViewer viewer = new ImageViewer(m.img, "Centroide");
 		viewer.render.marks.add(center1);
 		viewer.render.marks.add(center2);
