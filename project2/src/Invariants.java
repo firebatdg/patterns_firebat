@@ -46,6 +46,7 @@ public class Invariants {
 		Arrays.sort(listOfFiles);
 
 
+		System.out.println("\\section{Imagen " + id + "}");
 		System.out.println("\\begin{center}");
 		System.out.println("\\begin{tabular}{ | l | l | l | l | l | l | l |}");
 		System.out.println("\\hline");
@@ -122,7 +123,9 @@ public class Invariants {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		new Invariants().getReport(1, "images/obj");
+		for(int i=1;i<6;i++){
+			new Invariants().getReport(i, "images/obj");
+		}
 
 	}
 
