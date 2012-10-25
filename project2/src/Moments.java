@@ -17,14 +17,18 @@ public class Moments {
 		
 		this.c = new Common();
 		this.img = this.c.readImage(image);
+		if(c.get_average(img) > 100){
+			this.c.reverse(this.img);
+		}
+		System.out.printf("Avg: %f\n", c.get_average(img));
 		this.setup();
 		
 	}
 	
 	public void setup(){
 		//TODO change later
-		Sahoo s= new Sahoo(this.img);
-		int threshold = s.calculate_threshold();
+		Kittler k= new Kittler(this.img);
+		int threshold = k.calculate_threshold();
 		this.c.apply_threshold(this.img, threshold);
 		this.img_matrix = this.c.get_matrix_from_image(this.img);
 		CountObjects co = new CountObjects();
@@ -129,7 +133,8 @@ public class Moments {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Moments m = new Moments("images/IMAG0422.BMP");
+		Moments m = new Moments("images/IMAG0501.BMP");
+		
 		Point2D.Double center1 = m.getCentroid(2);
 		//Point2D.Double center2 = m.getCentroid(3);
 	
