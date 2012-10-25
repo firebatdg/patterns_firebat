@@ -23,8 +23,8 @@ public class Moments {
 	
 	public void setup(){
 		//TODO change later
-		Otsu o = new Otsu(this.img);
-		int threshold = o.calculate_threshold();
+		Sahoo s= new Sahoo(this.img);
+		int threshold = s.calculate_threshold();
 		this.c.apply_threshold(this.img, threshold);
 		this.img_matrix = this.c.get_matrix_from_image(this.img);
 		CountObjects co = new CountObjects();
@@ -117,8 +117,8 @@ public class Moments {
 		int M10 = this.getMoment(region, 1,0);
 		int M01 = this.getMoment(region, 0,1);
 		
-		int x = M10 / M00;
-		int y = M01 / M00;
+		double x = (double)M10 / (double)M00;
+		double y = (double)M01 / (double)M00;
 		
 		return new Point2D.Double(x,y);
 		
@@ -129,19 +129,19 @@ public class Moments {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Moments m = new Moments("imag001.bmp");
+		Moments m = new Moments("images/IMAG0422.BMP");
 		Point2D.Double center1 = m.getCentroid(2);
-		Point2D.Double center2 = m.getCentroid(3);
+		//Point2D.Double center2 = m.getCentroid(3);
 	
 		
 		
 		System.out.println(m.getHu1(2));
-		System.out.println(m.getHu1(3));
+		//System.out.println(m.getHu1(3));
 		System.out.println(m.getHu2(2));
-		System.out.println(m.getHu2(3));
+		//System.out.println(m.getHu2(3));
 		ImageViewer viewer = new ImageViewer(m.img, "Centroide");
 		viewer.render.marks.add(center1);
-		viewer.render.marks.add(center2);
+		//viewer.render.marks.add(center2);
 		
 	}
 
