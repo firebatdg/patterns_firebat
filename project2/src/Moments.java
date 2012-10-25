@@ -21,7 +21,7 @@ public class Moments {
 		if(c.get_average(img) > 100){
 			this.c.reverse(this.img);
 		}
-		System.out.printf("Avg: %f\n", c.get_average(img));
+		//System.out.printf("Avg: %f\n", c.get_average(img));
 		this.setup();
 		
 	}
@@ -38,6 +38,7 @@ public class Moments {
 		for(int i=2;i<total+2;i++){
 			if(this.getArea(i)> max){
 				this.working_region=i;
+				max = this.getArea(i);
 			}
 		}
 		
@@ -94,8 +95,8 @@ public class Moments {
 	public double getMu(int region, int powx, int powy){
 		Point2D.Double center = this.getCentroid(region);
 		
-		int x =(int) center.x;
-		int y = (int)center.y;
+		double x = center.x;
+		double y = center.y;
 		
 		int sum = 0;
 		for(int i=0;i<this.img_matrix.length;i++){
@@ -222,7 +223,7 @@ public class Moments {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Moments m = new Moments("images/obj5/IMAG0501.BMP");
+		Moments m = new Moments("images/obj4/IMAG0421.BMP");
 		
 		Point2D.Double center1 = m.getCentroid(m.working_region);
 
