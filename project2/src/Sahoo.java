@@ -23,7 +23,9 @@ public class Sahoo {
 		
 	}
 	
-	
+	public Sahoo(BufferedImage img){
+		this.img = img;
+	}
 	
 	private int pDelta_0(int k, int[] hist){
 		int out = 0;
@@ -75,7 +77,7 @@ public class Sahoo {
 		
 	}
 	
-	public void calculate_threshold(){
+	public int calculate_threshold(){
 		
 		int[] hist = this.c.get_histogram(this.img);
 		
@@ -95,6 +97,7 @@ public class Sahoo {
 			
 			
 		}
+		return this.threshold;
 		
 	}
 	

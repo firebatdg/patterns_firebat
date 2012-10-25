@@ -22,7 +22,9 @@ public class Kittler {
 		//viewer = new ImageViewer(this.img, "Metodo de Kittler");
 		
 	}
-	
+	public Kittler(BufferedImage img){
+		this.img = img;
+	}
 	
 	
 	private int p0(int k, int[] hist){
@@ -81,7 +83,7 @@ public class Kittler {
 		
 	}
 	
-	public void calculate_threshold(){
+	public int calculate_threshold(){
 		
 		int[] hist = this.c.get_histogram(this.img);
 		
@@ -108,7 +110,7 @@ public class Kittler {
 			
 			
 		}
-		
+		return this.threshold;
 	}
 	
 	public void threshold(){

@@ -58,6 +58,30 @@ public class Common {
 		return out;
 	}
 	
+	public double get_average(BufferedImage img){
+		
+		int[] hist = this.get_histogram(img);
+		
+		double out=0;
+		int total= img.getHeight() * img.getWidth();
+		for(int i=0;i<hist.length;i++){
+			
+			out += i * (double)hist[i]/(double)total; 
+		}
+		
+		return out;
+	}
+	
+	public void reverse(BufferedImage img){
+		
+		for(int y=0;y<img.getHeight();y++){
+			for(int x=0;x<img.getWidth();x++){
+				img.setRGB(x, y, 255 - img.getRGB(x, y));
+			}
+		}
+		
+	}
+	
 	public int[][] get_matrix_from_image(BufferedImage img){
 		int[][] out = new int[img.getHeight()][img.getWidth()];
 		
