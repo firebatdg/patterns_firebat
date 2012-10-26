@@ -223,7 +223,7 @@ public class Moments {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Moments m = new Moments("images/obj4/IMAG0421.BMP");
+		Moments m = new Moments("images/obj5/IMAG0501.BMP");
 		
 		Point2D.Double center1 = m.getCentroid(m.working_region);
 
