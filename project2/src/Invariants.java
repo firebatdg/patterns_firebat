@@ -138,7 +138,19 @@ public class Invariants {
 
 	}
 
-
+	public void conclusion(){
+		
+		System.out.println("\\section{Forma de Diferenciar Objetos}");
+		System.out.println("Mi propuesta para diferenciar objetos es usar los 2 invariantes de Hu, uno solo no basta pues en el caso del objeto 2 y 5");
+		System.out.println("el invariante 1 es muy similar, por esta razon decidi agregar el ivariante 2 de Hu que toma valores muy distintos para este par de objetos");
+		
+		System.out.println("\\section{Conclusiones}");
+		System.out.println("Esta tarea me parecio interesante, pero no tan retadora como la anterior pues solo consistio en aplicar las formulas. ");
+		System.out.println("Aun asi aprendi y me gusto que pudiera aplicar los algoritmos implementados en la tarea anterior, para realizar tareas mas complejas. \\\\");
+		System.out.println("\\\\Los problemas con los que me enfrente en esta fueron relacionados con el umbralado, primero porque en algunas imagenes quedaron regiones");
+		System.out.println(" parasitas, estas las elimine eligiendo solo el objeto con mayor area. El otro problema fueron 5 imagenes del ultimo objeto que eran mucho mas ");
+		System.out.println("claras, esto lo solucione obteniendo el complemento para dichas imagenes dependiendo del histograma");
+	}
 
 
 
@@ -150,6 +162,7 @@ public class Invariants {
 		for(int i=1;i<6;i++){
 			inv.getReport(i, "images/obj");
 		}
+		inv.conclusion();
 		inv.footer();
 
 	}
