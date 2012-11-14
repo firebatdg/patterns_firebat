@@ -20,29 +20,50 @@ public class ColorTag {
 		}
 	}
 	
-	public String getColor(){
+	public double getColor(){
 		
 		Common c = new Common();
 		c.makeGreyScale(this.img);
-		Otsu o = new Otsu(this.img);
-		o.threshold();
+		if(c.get_average(img) > 110){
+			c.reverse(this.img);
+		}
+		Kittler k = new Kittler(this.img);
+		k.threshold();
 		
 		CountObjects co = new CountObjects();
 		int[][] matrix = c.get_matrix_from_image(this.img);
 		int total = co.count_using_labels(matrix);
 		
+		System.out.println("Total: " + total);
+		
 		Moments img_moment = new Moments(this.img, matrix);
-		int working_region = -1;
-		int max = 0;
+		int working_region = -100;
+		int max = -100;
 		for(int i=2;i<total+2;i++){
+			int area = img_moment.getArea(i);
+			System.out.printf("Max: %d region: %d\n", area, i);
 			if(img_moment.getArea(i)> max){
 				working_region=i;
 				max = img_moment.getArea(i);
 			}
 		}
-		
+		System.out.println("WR: " + working_region);
+		//buscar un pixel de la region
+		for(int y=0;y<matrix.length;y++){
+			for(int x=0;x<matrix[y].length;x++){
+				if (matrix[y][x] == working_region){
+					this.center1 = new Point2D.Double(x,y);
+					break;
+				}
+			
+			}
+			if(this.center1 != null){
+				break;
+			}
+		}
 		this.center1 = img_moment.getCentroid(working_region);
-		return this.getHue((int)this.center1.x, (int)this.center1.y) + "";
+		System.out.println(this.getSaturation((int)this.center1.x, (int)this.center1.y));
+		return this.getHue((int)this.center1.x, (int)this.center1.y);
 		
 		
 	}
@@ -72,12 +93,20 @@ public class ColorTag {
 		
 	}
 	
+	public double getSaturation(int x, int y){
+		
+		int rgb = new Common().greyLevel(this.color_img.getRGB(x, y)) & 0xFF;
+		return rgb;//(rgb > 100) ? 1.0 : 0.0;
+		
+		
+	}
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ColorTag c = new ColorTag("apple.bmp");
+		ColorTag c = new ColorTag("banana.bmp");
 		System.out.println("Hue: " + c.getColor());
-		ImageViewer viewer = new ImageViewer(c.color_img, "Centroide");
+		ImageViewer viewer = new ImageViewer(c.img, "Centroide");
 		viewer.render.marks.add(c.center1);
 		
 	}
