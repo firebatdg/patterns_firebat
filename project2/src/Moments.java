@@ -25,6 +25,11 @@ public class Moments {
 		this.setup();
 		
 	}
+	public Moments(BufferedImage image, int[][] matrix){
+		this.img = image;
+		this.img_matrix = matrix;
+		
+	}
 	
 	public void setup(){
 		//TODO change later

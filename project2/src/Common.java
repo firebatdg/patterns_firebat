@@ -24,9 +24,23 @@ public class Common {
 		}
 	}
 	
-	
 	public int greyLevel(int rgb){
 		return rgb & 0xFF;
+	}
+	
+	public int colorToGrey(int rgb){
+		return ((rgb & 0xFF) + ((rgb & 0xFF00) >> 8) + ((rgb & 0xFF0000) >>16))/3;
+		//return rgb & 0xFF;
+	}
+	
+	public void makeGreyScale(BufferedImage img){
+		for(int y=0; y<img.getHeight();y++){
+			for(int x=0; x<img.getWidth();x++){
+				int old_rgb = this.colorToGrey(img.getRGB(x, y));
+				int new_rgb = old_rgb  + (old_rgb <<8) + (old_rgb<<16);
+				img.setRGB(x, y, new_rgb);
+			}
+		}
 	}
 	
 	public void apply_threshold(BufferedImage img, int threshold){
@@ -50,7 +64,7 @@ public class Common {
 		int[] out = new int[256];
 		for(int y=0; y<img.getHeight();y++){
 			for(int x=0; x<img.getWidth();x++){
-				int rgb = img.getRGB(x, y);
+				int rgb = this.greyLevel(img.getRGB(x, y));
 				out[this.greyLevel(rgb)]++;
 			}
 		}

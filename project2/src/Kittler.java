@@ -125,7 +125,7 @@ public class Kittler {
 	
 	public static void main(String[] args) {
 		
-		Kittler k = new Kittler("imag001.bmp");
+		Kittler k = new Kittler("green.bmp");
 		k.threshold();
 		ImageViewer viewer = new ImageViewer(k.img, "Metodo de Kittler");
 

@@ -16,7 +16,9 @@ public class Otsu {
 		
 		try {
 			this.img = BMPDecoder.read(new File(image));
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		//viewer = new ImageViewer(this.img, "Metodo de Otsu");
 		
@@ -75,9 +77,13 @@ public class Otsu {
 	
 	public static void main(String[] args) {
 		
-		Otsu o = new Otsu("imag001.bmp");
-		o.threshold();
-		ImageViewer viewer = new ImageViewer(o.img, "Metodo de Otsu");
+		//Otsu o = new Otsu("green.bmp");
+		Common c = new Common();
+		//c.makeGreyScale(o.img);
+	//	System.out.println(o.img.getHeight());
+	//	o.threshold();
+		
+		ImageViewer viewer = new ImageViewer(c.readImage("green.bmp"), "Metodo de Otsu");
 		
 	}
 

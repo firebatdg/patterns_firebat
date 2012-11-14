@@ -72,7 +72,7 @@ public class Otsu {
 	
 	public static void main(String[] args) {
 		
-		Otsu o = new Otsu("imag001.bmp");
+		Otsu o = new Otsu("green.bmp");
 		o.threshold();
 		ImageViewer viewer = new ImageViewer(o.img, "Metodo de Otsu");
 		

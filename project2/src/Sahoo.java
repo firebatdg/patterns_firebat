@@ -113,7 +113,7 @@ public class Sahoo {
 	
 	public static void main(String[] args) {
 		
-		Sahoo k = new Sahoo("imag001.bmp");
+		Sahoo k = new Sahoo("green.bmp");
 		k.threshold();
 		ImageViewer viewer = new ImageViewer(k.img, "Metodo de Sahoo");
 
