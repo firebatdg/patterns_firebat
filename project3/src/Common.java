@@ -33,6 +33,39 @@ public class Common {
 		//return rgb & 0xFF;
 	}
 	
+	
+	public int[] getBinaryFlat(BufferedImage img){
+		
+		int size = img.getHeight() * img.getWidth();
+		int width = img.getWidth();
+		int[] output = new int[size];
+		
+		for(int y=0;y<img.getHeight();y++){
+			for(int x=0;x<img.getWidth(); x++){
+				output[y* width + x] = (img.getRGB(x, y) & 0xFF) == 0xFF ? 1 : 0;
+			}
+		}
+		
+		return output;
+		
+		
+	}
+	
+	
+	public void addNoise(BufferedImage img, int percent){
+		
+		double p = (double)percent / 100.0;
+		
+		for(int y=0;y<img.getHeight();y++){
+			for(int x=0;x<img.getWidth(); x++){
+				if (Math.random() <= p){
+					int color = Math.random() > 0.5 ? 0xFFFFFF : 0;
+					img.setRGB(x, y, color);
+				}
+			}
+		}
+	}
+	
 	public void makeGreyScale(BufferedImage img){
 		for(int y=0; y<img.getHeight();y++){
 			for(int x=0; x<img.getWidth();x++){
