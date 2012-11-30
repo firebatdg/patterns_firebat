@@ -27,8 +27,8 @@ public class ColorTag {
 		if(c.get_average(img) > 110){
 			c.reverse(this.img);
 		}
-		Kittler k = new Kittler(this.img);
-		k.threshold();
+		Otsu o = new Otsu(this.img);
+		o.threshold();
 		
 		CountObjects co = new CountObjects();
 		int[][] matrix = c.get_matrix_from_image(this.img);
@@ -48,19 +48,7 @@ public class ColorTag {
 			}
 		}
 		System.out.println("WR: " + working_region);
-		//buscar un pixel de la region
-		for(int y=0;y<matrix.length;y++){
-			for(int x=0;x<matrix[y].length;x++){
-				if (matrix[y][x] == working_region){
-					this.center1 = new Point2D.Double(x,y);
-					break;
-				}
-			
-			}
-			if(this.center1 != null){
-				break;
-			}
-		}
+	
 		this.center1 = img_moment.getCentroid(working_region);
 		System.out.println(this.getSaturation((int)this.center1.x, (int)this.center1.y));
 		return this.getHue((int)this.center1.x, (int)this.center1.y);
@@ -104,9 +92,9 @@ public class ColorTag {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ColorTag c = new ColorTag("banana.bmp");
+		ColorTag c = new ColorTag("apple.bmp");
 		System.out.println("Hue: " + c.getColor());
-		ImageViewer viewer = new ImageViewer(c.img, "Centroide");
+		ImageViewer viewer = new ImageViewer(c.color_img, "Centroide");
 		viewer.render.marks.add(c.center1);
 		
 	}
